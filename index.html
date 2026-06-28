@@ -91,36 +91,37 @@
         }
         #music-btn:hover { transform: scale(1.1); background: #fff; }
 
-        /* ── YARASALARIN SOLDA BELİRMESİNİ ENGELLEYEN YENİ SİSTEM ── */
+        /* ── GÖNDERDİĞİNİZ GÖRSELDEKİ GERÇEKÇİ SİYAH YARASALAR ── */
         .bat-container {
             position: fixed;
-            width: 100px;  
-            height: 60px;
+            width: 110px;  
+            height: 70px;
             z-index: 4;
             pointer-events: none;
-            /* Ekranın tamamen sol dışından başlatıp taşmayı gizledik */
             left: -150px; 
             animation: flyAcross 7s infinite linear;
         }
 
+        /* Fotoğraftaki keskin gotik yarasa hatları (SVG Path) */
         .bat-svg {
             width: 100%;
             height: 100%;
-            fill: #0a0a0a; 
-            filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.7));
-            animation: flap 0.4s infinite ease-in-out alternate;
+            fill: #0d0d0d; 
+            filter: drop-shadow(0px 6px 4px rgba(0,0,0,0.8));
+            animation: flapWings 0.35s infinite ease-in-out alternate;
             transform-origin: center;
         }
 
-        @keyframes flap {
-            0% { transform: scaleY(1); }
-            100% { transform: scaleY(0.3); } 
+        /* Gerçekçi kanat çırpış simülasyonu */
+        @keyframes flapWings {
+            0% { transform: scaleY(1.1) rotate(2deg); }
+            100% { transform: scaleY(0.4) rotate(-5deg); } 
         }
 
         @keyframes flyAcross {
             0% { transform: translateX(0) translateY(0px); }
-            50% { transform: translateX(calc(50vw + 75px)) translateY(-40px); }
-            100% { transform: translateX(calc(100vw + 200px)) translateY(0px); }
+            50% { transform: translateX(calc(50vw + 75px)) translateY(-50px); }
+            100% { transform: translateX(calc(100vw + 200px)) translateY(10px); }
         }
 
         /* KALPLER */
@@ -138,7 +139,7 @@
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
-        /* ── SÜRÜKLENEBİLİR KİLİT ALANI ── */
+        /* SÜRÜKLENEBİLİR KİLİT ALANI */
         .climax-box {
             margin-top: 40px;
             position: relative;
@@ -167,7 +168,7 @@
             cursor: grab;
             transition: transform 0.2s;
             user-select: none;
-            touch-action: none; /* Mobil kaydırmayı engeller */
+            touch-action: none; 
         }
         .key-icon:active { cursor: grabbing; transform: scale(1.1); }
 
@@ -210,18 +211,27 @@
 
     <div id="music-btn" onclick="controlMusic()">🎵 MÜZİĞİMİZİ AÇ</div>
 
-    <!-- YARASALAR (Artık sol kenarda asla pırtlamıyorlar) -->
-    <div class="bat-container" style="top: 12%; animation-delay: 0s; animation-duration: 8s;">
-        <svg class="bat-svg" viewBox="0 0 512 512"><path d="M414.2 80c-21.2 0-41 8.2-55.8 23.3-11.8-8-25.9-12.5-41.1-12.5-25.5 0-48.4 12.6-61.3 32-12.9-19.4-35.8-32-61.3-32-15.2 0-29.3 4.5-41.1 12.5C138.8 88.2 119 80 97.8 80 43.9 80 0 123.9 0 177.8c0 74.3 75.3 124 135 159.2 38.4 22.7 78.3 36.1 121 36.1s82.6-13.4 121-36.1c59.7-35.2 135-84.9 135-159.2C512 123.9 468.1 80 414.2 80zM256 316.5c-48.8-19.4-111-66.2-111-138.7 0-23.6 19.1-42.7 42.7-42.7 18.2 0 33.7 11.5 39.9 28.5h56.8c6.2-17 21.7-28.5 39.9-28.5 23.6 0 42.7 19.1 42.7 42.7C367 250.3 304.8 297.1 256 316.5z"/></svg>
+    <div class="bat-container" style="top: 10%; animation-delay: 0s; animation-duration: 7.5s;">
+        <svg class="bat-svg" viewBox="0 0 512 512">
+            <path d="M496 160c-16 0-42 22-72 48-18-28-50-52-88-52-16 0-32 5-44 14-8-12-22-20-38-20s-30 8-38 20c-12-9-28-14-44-14-38 0-70 24-88 52-30-26-56-48-72-48-12 0-16 12-16 20 0 48 48 108 116 142 20 10 42 16 64 18 4 18 16 34 34 42v46c0 10 8 18 18 18s18-8 18-18v-46c18-8 30-24 34-42 22-2 44-8 64-18 68-34 116-94 116-142 0-8-4-20-16-20z"/>
+        </svg>
     </div>
-    <div class="bat-container" style="top: 28%; animation-delay: 2.5s; animation-duration: 6s;">
-        <svg class="bat-svg" viewBox="0 0 512 512"><path d="M414.2 80c-21.2 0-41 8.2-55.8 23.3-11.8-8-25.9-12.5-41.1-12.5-25.5 0-48.4 12.6-61.3 32-12.9-19.4-35.8-32-61.3-32-15.2 0-29.3 4.5-41.1 12.5C138.8 88.2 119 80 97.8 80 43.9 80 0 123.9 0 177.8c0 74.3 75.3 124 135 159.2 38.4 22.7 78.3 36.1 121 36.1s82.6-13.4 121-36.1c59.7-35.2 135-84.9 135-159.2C512 123.9 468.1 80 414.2 80zM256 316.5c-48.8-19.4-111-66.2-111-138.7 0-23.6 19.1-42.7 42.7-42.7 18.2 0 33.7 11.5 39.9 28.5h56.8c6.2-17 21.7-28.5 39.9-28.5 23.6 0 42.7 19.1 42.7 42.7C367 250.3 304.8 297.1 256 316.5z"/></svg>
+    <div class="bat-container" style="top: 30%; animation-delay: 2.2s; animation-duration: 5.8s;">
+        <svg class="bat-svg" viewBox="0 0 512 512">
+            <path d="M496 160c-16 0-42 22-72 48-18-28-50-52-88-52-16 0-32 5-44 14-8-12-22-20-38-20s-30 8-38 20c-12-9-28-14-44-14-38 0-70 24-88 52-30-26-56-48-72-48-12 0-16 12-16 20 0 48 48 108 116 142 20 10 42 16 64 18 4 18 16 34 34 42v46c0 10 8 18 18 18s18-8 18-18v-46c18-8 30-24 34-42 22-2 44-8 64-18 68-34 116-94 116-142 0-8-4-20-16-20z"/>
+        </svg>
     </div>
-    <div class="bat-container" style="top: 48%; animation-delay: 1.2s; animation-duration: 9s;">
-        <svg class="bat-svg" viewBox="0 0 512 512"><path d="M414.2 80c-21.2 0-41 8.2-55.8 23.3-11.8-8-25.9-12.5-41.1-12.5-25.5 0-48.4 12.6-61.3 32-12.9-19.4-35.8-32-61.3-32-15.2 0-29.3 4.5-41.1 12.5C138.8 88.2 119 80 97.8 80 43.9 80 0 123.9 0 177.8c0 74.3 75.3 124 135 159.2 38.4 22.7 78.3 36.1 121 36.1s82.6-13.4 121-36.1c59.7-35.2 135-84.9 135-159.2C512 123.9 468.1 80 414.2 80zM256 316.5c-48.8-19.4-111-66.2-111-138.7 0-23.6 19.1-42.7 42.7-42.7 18.2 0 33.7 11.5 39.9 28.5h56.8c6.2-17 21.7-28.5 39.9-28.5 23.6 0 42.7 19.1 42.7 42.7C367 250.3 304.8 297.1 256 316.5z"/></svg>
+    <div class="bat-container" style="top: 52%; animation-delay: 1s; animation-duration: 8.5s;">
+        <svg class="bat-svg" viewBox="0 0 512 512">
+            <path d="M496 160c-16 0-42 22-72 48-18-28-50-52-88-52-16 0-32 5-44 14-8-12-22-20-38-20s-30 8-38 20c-12-9-28-14-44-14-38 0-70 24-88 52-30-26-56-48-72-48-12 0-16 12-16 20 0 48 48 108 116 142 20 10 42 16 64 18 4 18 16 34 34 42v46c0 10 8 18 18 18s18-8 18-18v-46c18-8 30-24 34-42 22-2 44-8 64-18 68-34 116-94 116-142 0-8-4-20-16-20z"/>
+        </svg>
+    </div>
+    <div class="bat-container" style="top: 75%; animation-delay: 3.8s; animation-duration: 6.8s;">
+        <svg class="bat-svg" viewBox="0 0 512 512">
+            <path d="M496 160c-16 0-42 22-72 48-18-28-50-52-88-52-16 0-32 5-44 14-8-12-22-20-38-20s-30 8-38 20c-12-9-28-14-44-14-38 0-70 24-88 52-30-26-56-48-72-48-12 0-16 12-16 20 0 48 48 108 116 142 20 10 42 16 64 18 4 18 16 34 34 42v46c0 10 8 18 18 18s18-8 18-18v-46c18-8 30-24 34-42 22-2 44-8 64-18 68-34 116-94 116-142 0-8-4-20-16-20z"/>
+        </svg>
     </div>
 
-    <!-- 1. BÖLÜM -->
     <div class="slide-container">
         <h1 class="header-font" style="font-size: 3rem; margin-bottom: 30px;">Her Şey Seninle Başladı... ❤️</h1>
         <div class="image-wrapper">
@@ -233,154 +243,6 @@
         <span class="header-font" style="font-size: 14px; color: #FFD700; opacity: 0.6; margin-top: 20px;">(Aşağıya doğru kaydır sevgilim... 🦇)</span>
     </div>
 
-    <!-- 2. BÖLÜM -->
     <div class="slide-container">
         <h1 class="header-font" style="font-size: 3rem; margin-bottom: 30px;">İyi ki Varsın, İyi ki Benimlesin... 🥰</h1>
         <div class="image-wrapper">
-            <img src="IMG_20260214_202723.jpg" alt="Birlikte">
-        </div>
-        <p class="love-font" style="font-size: 1.8rem; margin-top: 30px; max-width: 650px;">
-            Gülüşünle dünyamı aydınlattığın, her düştüğümde elimden tuttuğun ve beni ben olduğum için bu kadar güzel sevdiğin için teşekkür ederim Damlam.
-        </p>
-    </div>
-
-    <!-- 3. BÖLÜM (FİNAL) -->
-    <div class="slide-container">
-        <h1 class="header-font" style="font-size: 3rem; margin-bottom: 30px;">Sonsuza Kadar El Ele... 🌹</h1>
-        <div class="image-wrapper">
-            <img src="0434619d-9c5c-4d00-8367-38e69eb249ea.jpg" alt="Geleceğimiz">
-        </div>
-        
-        <p class="love-font" style="font-size: 1.8rem; margin-top: 30px; max-width: 650px;">
-            Önümüzde upuzun, musmutlu bir yol var ve ben o yolda sadece seninle yürümek istiyorum. Kalbimin tek bir anahtarı var ve o da tamamen sende...
-        </p>
-
-        <!-- YENİ İNTERAKTİF SÜRÜKLE-BIRAK ALANI -->
-        <div class="climax-box">
-            <div class="drag-zone">
-                <div id="key" class="key-icon" draggable="true">🔑</div>
-                <div id="key-hint" class="key-hint">BENİ KİLİDE GÖTÜR</div>
-            </div>
-            
-            <div id="lock" class="lock-icon">🔒</div>
-            <div id="big-heart" class="final-heart">❤️</div>
-        </div>
-        
-        <h2 class="header-font" style="margin-top: 50px; font-size: 2.5rem;">Seni Çok Seviyorum Sevgilim!</h2>
-    </div>
-
-    <script>
-        window.onload = function() {
-            let ask = confirm("Bu siteye girmek istediğinden emin misin? (Son kararın mı?)");
-            if(!ask) {
-                alert("Yaa, ama bu site senin için yapılmıştı... 🥺");
-                window.location.reload();
-            }
-            initDragAndDrop();
-        };
-
-        window.onscroll = function() {
-            let pos = window.scrollY;
-            if(pos > 600 && pos < 1600) {
-                createHearts();
-            }
-        };
-
-        // ── SÜRÜKLE BIRAK MOTORU (PC VE MOBİL UYUMLU) ──
-        function initDragAndDrop() {
-            const key = document.getElementById('key');
-            const lock = document.getElementById('lock');
-            const hint = document.getElementById('key-hint');
-            const bigHeart = document.getElementById('big-heart');
-
-            // Hem mouse hem dokunmatik ekranlar için değişkenler
-            let isDragging = false;
-            let startX, startY, initialX = 0, initialY = 0;
-
-            // PC için Sürükleme Başlangıcı
-            key.addEventListener('mousedown', startDrag);
-            // Mobil için Sürükleme Başlangıcı
-            key.addEventListener('touchstart', startDrag, { passive: false });
-
-            function startDrag(e) {
-                isDragging = true;
-                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-                
-                startX = clientX - initialX;
-                startY = clientY - initialY;
-
-                document.addEventListener('mousemove', drag);
-                document.addEventListener('touchmove', drag, { passive: false });
-                document.addEventListener('mouseup', stopDrag);
-                document.addEventListener('touchend', stopDrag);
-            }
-
-            function drag(e) {
-                if (!isDragging) return;
-                if(e.cancelable) e.preventDefault(); // Sayfa kaymasını engelle
-
-                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-
-                initialX = clientX - startX;
-                initialY = clientY - startY;
-
-                key.style.transform = `translate(${initialX}px, ${initialY}px)`;
-
-                // Kilidin ve Anahtarın anlık konumlarını kontrol etme (Çarpışma Testi)
-                const keyRect = key.getBoundingClientRect();
-                const lockRect = lock.getBoundingClientRect();
-
-                // Anahtar kilidin üzerine geldi mi?
-                if (
-                    keyRect.right > lockRect.left &&
-                    keyRect.left < lockRect.right &&
-                    keyRect.bottom > lockRect.top &&
-                    keyRect.top < lockRect.bottom
-                ) {
-                    // AKTİVE OLDU!
-                    isDragging = false;
-                    document.removeEventListener('mousemove', drag);
-                    document.removeEventListener('touchmove', drag);
-                    
-                    lock.innerHTML = "🔓";
-                    key.style.display = "none";
-                    hint.style.display = "none";
-                    bigHeart.style.transform = "translate(-50%, -50%) scale(1.3)";
-                }
-            }
-
-            function stopDrag() {
-                isDragging = false;
-                document.removeEventListener('mousemove', drag);
-                document.removeEventListener('touchmove', drag);
-            }
-        }
-
-        function controlMusic() {
-            let a = document.getElementById('audio');
-            let b = document.getElementById('music-btn');
-            if(a.paused) {
-                a.play();
-                b.innerHTML = "⏸️ MÜZİĞİ DURDUR";
-            } else {
-                a.pause();
-                b.innerHTML = "🎵 MÜZİĞİMİZİ AÇ";
-            }
-        }
-
-        function createHearts() {
-            if(document.querySelectorAll('.floating-heart').length > 15) return;
-            let heart = document.createElement('div');
-            heart.className = 'floating-heart';
-            heart.innerHTML = "❤️";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-            document.body.appendChild(heart);
-            heart.style.display = "block";
-            setTimeout(() => { heart.remove(); }, 4000);
-        }
-    </script>
-</body>
-</html>
