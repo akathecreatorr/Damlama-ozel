@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sana Bir Mesajım Var ❤️</title>
+    <style>
+        body {
+            background-color: #ffe6e6;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 { color: #ff4d6d; }
+        p { color: #4a4a4a; font-size: 18px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Buraya site açılınca ne yazmasını istiyorsan onu yazabilirsin -->
+        <h1>Seni Çok Seviyorum! ❤️</h1>
+        <p>İyi ki hayatımdasın. Bu site tamamen sana özel hazırlandı.</p>
+    </div>
+
+    <script>
+        // Siteye girildiği anda çıkacak olan o özel soru:
+        window.onload = function() {
+            var eminMisin = confirm("Bu siteye girmek istediğinden emin misin? (Son kararın mı?)");
+            if (!eminMisin) {
+                // Eğer iptal derse başka bir sayfaya gönderebilir ya da uyarı verebiliriz
+                alert("Yaa, ama bu site senin için yapılmıştı... 🥺");
+                window.location.reload(); // Sayfayı yeniler, tekrar sorar.
+            }
+        };
+    </script>
+</body>
+</html>
