@@ -7,30 +7,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* GENEL TASARIM VE KAN KIRMIZISI DETAYI */
         * { box-sizing: border-box; }
         
         body {
-            background: radial-gradient(circle, #b10000 0%, #4b0000 100%); /* Derin ve Canlı Kan Kırmızısı */
+            /* GOTİK VE KAN KIRMIZISI ARKA PLAN (Blurlu Sis Efektli) */
+            background-color: #300000; 
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.8) 0%, transparent 60%),
+                radial-gradient(circle at 80% 70%, rgba(75, 0, 0, 0.9) 0%, #1a0000 100%);
+            background-attachment: fixed;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
+        /* Arka plana o derin gotik pus hissini veren blurlu katman */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px); 
+            z-index: 1;
+            pointer-events: none;
+        }
+
         /* ÖZEL UYUMLU RENKLİ FONT SINIFLARI */
         .header-font { 
             font-family: 'Cinzel', serif; 
-            color: #FFD700; /* Asil Altın Sarısı */
+            color: #FFD700; 
             text-transform: uppercase; 
             letter-spacing: 3px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.9);
         }
         
         .love-font { 
             font-family: 'Dancing Script', cursive; 
-            color: #ffffff; /* Parlak Beyaz */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            color: #ffffff; 
+            text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9);
         }
 
         /* BÖLÜM AYARLARI */
@@ -43,18 +58,19 @@
             align-items: center;
             padding: 40px;
             position: relative;
-            border-bottom: 2px solid rgba(255, 215, 0, 0.15);
+            border-bottom: 2px solid rgba(139, 0, 0, 0.3);
             text-align: center;
+            z-index: 2; 
         }
 
-        /* FOTOĞRAF ÇERÇEVESİ (Çok Daha Belirgin ve Şık) */
+        /* GOTİK VAMPİR TARZI FOTOĞRAF ÇERÇEVESİ */
         .image-wrapper {
             width: 90%;
             max-width: 450px;
-            border: 8px double #FFD700; /* Altın Sarısı Çift Çerçeve */
-            border-radius: 10px;
+            border: 6px double #FFD700; 
+            border-radius: 4px; 
             overflow: hidden;
-            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.95), 0 0 20px rgba(139, 0, 0, 0.4);
             position: relative;
             background: #000;
             transition: transform 0.5s ease;
@@ -70,7 +86,7 @@
             display: block;
         }
 
-        /* YENİLENEN MÜZİK BUTONU */
+        /* MÜZİK BUTONU */
         #music-btn {
             position: fixed;
             bottom: 30px;
@@ -83,28 +99,36 @@
             font-weight: bold;
             cursor: pointer;
             z-index: 9999;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
             transition: 0.3s;
         }
         #music-btn:hover { transform: scale(1.1); background: #fff; }
 
-        /* ── ÇILGIN ANIMASYON ELEMANLARI ── */
+        /* SÜREKLİ UÇAN BÜYÜK YARASALAR */
         .moving-bat {
             position: fixed;
-            font-size: 40px;
-            z-index: 10;
-            transition: 0.2s linear;
+            font-size: 55px; /* Boyutları büyütüldü */
+            z-index: 3; /* Fotoğrafların ve yazıların üstünden geçsinler */
             pointer-events: none;
-            display: none;
+            animation: flyRight 6s infinite linear;
+            opacity: 0.8;
         }
 
+        @keyframes flyRight {
+            0% { transform: translateX(-10vw) translateY(0px); }
+            50% { transform: translateX(50vw) translateY(-30px); }
+            100% { transform: translateX(110vw) translateY(0px); }
+        }
+
+        /* KALPLER */
         .floating-heart {
             position: fixed;
             z-index: 5;
-            color: #ff3333;
+            color: #8b0000; 
             font-size: 24px;
             animation: moveHeart 4s infinite linear;
             display: none;
+            text-shadow: 0 0 10px rgba(255,0,0,0.5);
         }
         @keyframes moveHeart {
             0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
@@ -122,21 +146,27 @@
             align-items: center;
         }
         .key-icon { font-size: 60px; position: absolute; left: -200px; opacity: 0; transition: 2s ease-in-out; }
-        .lock-icon { font-size: 100px; color: #FFD700; }
-        .final-heart { font-size: 120px; color: #ff0000; position: absolute; transform: scale(0); transition: 1s cubic-bezier(.17,.67,.83,.67); text-shadow: 0 0 40px #ff0000; }
+        .lock-icon { font-size: 100px; color: #FFD700; text-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .final-heart { font-size: 120px; color: #8b0000; position: absolute; transform: scale(0); transition: 1s cubic-bezier(.17,.67,.83,.67); text-shadow: 0 0 40px #ff0000; }
     </style>
 </head>
 <body>
 
+    <!-- ARKA PLAN MÜZİĞİ -->
     <audio id="audio" loop>
         <source src="Sadece Sevilmek İstedim.mp3" type="audio/mpeg">
     </audio>
 
     <div id="music-btn" onclick="controlMusic()">🎵 MÜZİĞİMİZİ AÇ</div>
 
-    <div id="bat1" class="moving-bat">🦇</div>
-    <div id="bat2" class="moving-bat">🦇</div>
+    <!-- SÜREKLİ TEK YÖNE UÇACAK YARASALAR SÜRÜSÜ -->
+    <div class="moving-bat" style="top: 10%; animation-delay: 0s; animation-duration: 7s;">🦇</div>
+    <div class="moving-bat" style="top: 25%; animation-delay: 2s; animation-duration: 5s;">🦇</div>
+    <div class="moving-bat" style="top: 45%; animation-delay: 1s; animation-duration: 8s;">🦇</div>
+    <div class="moving-bat" style="top: 65%; animation-delay: 3.5s; animation-duration: 6s;">🦇</div>
+    <div class="moving-bat" style="top: 80%; animation-delay: 1.5s; animation-duration: 9s;">🦇</div>
 
+    <!-- 1. BÖLÜM -->
     <div class="slide-container">
         <h1 class="header-font" style="font-size: 3rem; margin-bottom: 30px;">Her Şey Seninle Başladı... ❤️</h1>
         <div class="image-wrapper">
@@ -148,6 +178,7 @@
         <span class="header-font" style="font-size: 14px; color: #FFD700; opacity: 0.6; margin-top: 20px;">(Aşağıya doğru kaydır sevgilim... 🦇)</span>
     </div>
 
+    <!-- 2. BÖLÜM -->
     <div class="slide-container">
         <h1 class="header-font" style="font-size: 3rem; margin-bottom: 30px;">İyi ki Varsın, İyi ki Benimlesin... 🥰</h1>
         <div class="image-wrapper">
@@ -158,6 +189,7 @@
         </p>
     </div>
 
+    <!-- 3. BÖLÜM (FİNAL) -->
     <div class="slide-container">
         <h1 class="header-font" style="font-size: 3rem; margin-bottom: 30px;">Sonsuza Kadar El Ele... 🌹</h1>
         <div class="image-wrapper">
@@ -168,6 +200,7 @@
             Önümüzde upuzun, musmutlu bir yol var ve ben o yolda sadece seninle yürümek istiyorum. Kalbimin tek bir anahtarı var ve o da tamamen sende...
         </p>
 
+        <!-- KİLİT VE ANAHTAR ANİMASYONU -->
         <div class="climax-box">
             <div id="key" class="key-icon">🔑</div>
             <div id="lock" class="lock-icon">🔒</div>
@@ -178,7 +211,6 @@
     </div>
 
     <script>
-        // GİRİŞTE ÇIKACAK O ÖZEL SORU
         window.onload = function() {
             let ask = confirm("Bu siteye girmek istediğinden emin misin? (Son kararın mı?)");
             if(!ask) {
@@ -187,27 +219,15 @@
             }
         };
 
-        // SAYFA KAYDIRILDIKÇA AKTİF OLACAK EFEKTLER
         window.onscroll = function() {
             let pos = window.scrollY;
 
-            // 1. Yarasaları Uçur (İlk kaydırmada tetiklenir)
-            let b1 = document.getElementById('bat1');
-            let b2 = document.getElementById('bat2');
-            if(pos > 100 && pos < 800) {
-                b1.style.display = "block"; b2.style.display = "block";
-                b1.style.left = (pos * 1.5) + "px"; b1.style.top = "250px";
-                b2.style.right = (pos * 1.8) + "px"; b2.style.top = "450px";
-            } else {
-                b1.style.display = "none"; b2.style.display = "none";
-            }
-
-            // 2. Kalpleri Uçur (İkinci bölümde yükselmeye başlar)
+            // Kalpler (İkinci bölümde yükselmeye başlar)
             if(pos > 600 && pos < 1600) {
                 createHearts();
             }
 
-            // 3. FİNAL ANIMASYONU (Anahtar kilidi açar ve kalp fırlar)
+            // Final Animasyonu
             if(pos > 1500) {
                 let k = document.getElementById('key');
                 let l = document.getElementById('lock');
@@ -224,20 +244,18 @@
             }
         };
 
-        // MÜZİK AÇMA / KAPAMA
         function controlMusic() {
             let a = document.getElementById('audio');
             let b = document.getElementById('music-btn');
             if(a.paused) {
                 a.play();
-                b.innerHTML = "⏸️ MÜZİĞİ DURDUR";
+                b.innerHTML = "⏸️ MÜZİĞI DURDUR";
             } else {
                 a.pause();
                 b.innerHTML = "🎵 MÜZİĞİMİZİ AÇ";
             }
         }
 
-        // Sonsuz Kalp Yağmuru Fonksiyonu
         function createHearts() {
             if(document.querySelectorAll('.floating-heart').length > 15) return;
             let heart = document.createElement('div');
