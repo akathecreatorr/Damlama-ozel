@@ -5,44 +5,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sana Bir Mesajım Var ❤️</title>
     <style>
+        /* Kan kırmızısı arka plan ve genel font ayarları */
         body {
-            background-color: #ffe6e6;
-            font-family: 'Arial', sans-serif;
+            background-color: #8B0000; /* Koyu Kan Kırmızısı */
+            color: #fffaf0; /* Fildişi Beyazı - Gözü yormayan, okunaklı şık yazı rengi */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Öne çıkan modern font */
+            margin: 0;
+            padding: 0;
             display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Ekrandaki her bir hikaye bölümü (Kartlar) */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
             text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 800px;
+            border-bottom: 1px solid rgba(255, 250, 240, 0.1); /* Bölümler arası hafif çizgi */
         }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+
+        /* Yazıların şık ve öne çıkan görünmesi için ayarlar */
+        h1 {
+            font-size: 2.5rem;
+            color: #FFD700; /* Altın Sarısı - Kan kırmızısı üzerinde en asil duran renk */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-        h1 { color: #ff4d6d; }
-        p { color: #4a4a4a; font-size: 18px; }
+
+        p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-bottom: 30px;
+            color: #f5f5f5;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Fotoğrafların çerçeve ve geçiş ayarları */
+        .photo-container {
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            border: 3px solid #FFD700; /* Altın sarısı çerçeve */
+            background-color: #000;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        /* Fotoğrafın üzerine gelindiğinde hafifçe büyüme animasyonu */
+        .photo-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Sağ alttaki Müzik Butonu */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #FFD700;
+            color: #8B0000;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            z-index: 1000;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            background-color: #fffaf0;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Buraya site açılınca ne yazmasını istiyorsan onu yazabilirsin -->
-        <h1>Seni Çok Seviyorum! ❤️</h1>
-        <p>İyi ki hayatımdasın. Bu site tamamen sana özel hazırlandı.</p>
+    <!-- ARKA PLANDA ÇALACAK ŞARKI -->
+    <audio id="bgMusic" loop>
+        <!-- DİKKAT: Alttaki tırnak işaretlerinin arasına yüklediğin şarkının adını uzantısıyla beraber (örn: sarki.mp3) yaz -->
+        <source src="BURAYA_SARKI_ADINI_YAZ.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Müzik Çalma Butonu -->
+    <button class="music-btn" onclick="toggleMusic()" id="mBtn">🎵 Müziğimizi Aç</button>
+
+    <!-- 1. BÖLÜM -->
+    <div class="section">
+        <h1>Her Şey Seninle Başladı... ❤️</h1>
+        <div class="photo-container">
+            <!-- DİKKAT: Alttaki tırnak işaretlerinin arasına 1. fotoğrafın tam adını yaz -->
+            <img src="BURAYA_1_FOTOGRAF_ADINI_YAZ.jpg" alt="İlk Anımız">
+        </div>
+        <p><br>Hayatıma girdiğin o ilk günü, bana kattığın o güzel enerjiyi asla unutamam. Seninle geçen her an, hayatımın en değerli parçası haline geldi.</p>
     </div>
 
+    <!-- 2. BÖLÜM -->
+    <div class="section">
+        <h1>İyi ki Varsın, İyi ki Benimlesin... 🥰</h1>
+        <div class="photo-container">
+            <!-- DİKKAT: Alttaki tırnak işaretlerinin arasına 2. fotoğrafın tam adını yaz -->
+            <img src="BURAYA_2_FOTOGRAF_ADINI_YAZ.jpg" alt="Birlikte">
+        </div>
+        <p><br>Gülüşünle dünyamı aydınlattığın, her düştüğümde elimden tuttuğun ve beni ben olduğum için bu kadar güzel sevdiğin için teşekkür ederim.</p>
+    </div>
+
+    <!-- 3. BÖLÜM (KAPANIŞ) -->
+    <div class="section">
+        <h1>Sonsuza Kadar El Ele... 🌹</h1>
+        <div class="photo-container">
+            <!-- DİKKAT: Alttaki tırnak işaretlerinin arasına 3. fotoğrafın tam adını yaz -->
+            <img src="BURAYA_3_FOTOGRAF_ADINI_YAZ.jpg" alt="Geleceğimiz">
+        </div>
+        <p><br>Önümüzde upuzun, musmutlu bir yol var ve ben o yolda sadece seninle yürümek istiyorum. Seni çok ama çok seviyorum sevgilim!</p>
+    </div>
+
+    <!-- SİTEYE GİRİŞTE ÇIKACAK SORU VE MÜZİK KONTROLÜ -->
     <script>
-        // Siteye girildiği anda çıkacak olan o özel soru:
         window.onload = function() {
+            // İlk girişte çıkacak o özel soru
             var eminMisin = confirm("Bu siteye girmek istediğinden emin misin? (Son kararın mı?)");
             if (!eminMisin) {
-                // Eğer iptal derse başka bir sayfaya gönderebilir ya da uyarı verebiliriz
                 alert("Yaa, ama bu site senin için yapılmıştı... 🥺");
-                window.location.reload(); // Sayfayı yeniler, tekrar sorar.
+                window.location.reload(); // İptal derse sayfayı yeniler ve tekrar sorar
             }
         };
+
+        // Müzik açma/kapama fonksiyonu
+        function toggleMusic() {
+            var music = document.getElementById("bgMusic");
+            var btn = document.getElementById("mBtn");
+            if (music.paused) {
+                music.play();
+                btn.innerHTML = "⏸️ Müziği Durdur";
+                btn.style.backgroundColor = "#fffaf0";
+                btn.style.color = "#8B0000";
+            } else {
+                music.pause();
+                btn.innerHTML = "🎵 Müziğimizi Aç";
+                btn.style.backgroundColor = "#FFD700";
+                btn.style.color = "#8B0000";
+            }
+        }
     </script>
 </body>
 </html>
