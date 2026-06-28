@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sana Bir Mesajım Var ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght=1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { box-sizing: border-box; }
@@ -31,7 +31,7 @@
             pointer-events: none;
         }
 
-        /* ── GİZEMLİ GİRİŞ PERDESİ ── */
+        /* ── GİZEMLİ GİRİŞ PERDESİ (OVERLAY) ── */
         #entry-overlay {
             position: fixed;
             top: 0;
@@ -45,6 +45,8 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            opacity: 1;
+            visibility: visible;
             transition: opacity 0.8s ease, visibility 0.8s ease;
         }
 
@@ -83,6 +85,7 @@
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
         }
 
+        /* DİĞER STİLLER */
         .header-font { 
             font-family: 'Cinzel', serif; 
             color: #FFD700; 
@@ -258,7 +261,7 @@
         <div class="mystery-wrapper">
             <img src="gizemli-foto.jpg" alt="Gizemli Sürpriz">
         </div>
-        <button class="entry-btn" onclick="revealSite()">SÜRPRİZİ AÇ ✨</button>
+        <button id="reveal-btn" class="entry-btn">SÜRPRİZİ AÇ ✨</button>
     </div>
 
     <audio id="audio" loop>
@@ -285,4 +288,168 @@
         <p class="love-font" style="font-size: 1.8rem; margin-top: 30px; max-width: 650px;">
             Hayatıma girdiğin o ilk günü, bana kattığın o güzel enerjiyi asla unutamam. Seninle geçen her an, hayatımın en değerli parçası haline geldi.
         </p>
-        <span class="header-font" style="font-size: 14px; color: #FFD700; opacity: 0.6; margin-top: 20px;">(Aşağı
+        <span class="header-font" style="font-size: 14px; color: #FFD700; opacity: 0.6; margin-top: 20px;">(Aşağıya doğru kaydır sevgilim... 🦇)</span>
+    </div>
+
+    <div class="slide-container">
+        <h1 class="header-font" style="font-size: 3rem; margin-bottom: 30px;">İyi ki Varsın, İyi ki Benimlesin... 🥰</h1>
+        <div class="image-wrapper">
+            <img src="IMG_20260214_202723.jpg" alt="Birlikte">
+        </div>
+        <p class="love-font" style="font-size: 1.8rem; margin-top: 30px; max-width: 650px;">
+            Gülüşünle dünyamı aydınlattığın, her düştüğümde elimden tuttuğun ve beni ben olduğum için bu kadar güzel sevdiğin için teşekkür ederim Damlam.
+        </p>
+    </div>
+
+    <div class="slide-container">
+        <h1 class="header-font" style="font-size: 3rem; margin-bottom: 30px;">Sonsuza Kadar El Ele... 🌹</h1>
+        <div class="image-wrapper">
+            <img src="0434619d-9c5c-4d00-8367-38e69eb249ea.jpg" alt="Geleceğimiz">
+        </div>
+        
+        <p class="love-font" style="font-size: 1.8rem; margin-top: 30px; max-width: 650px;">
+            Önümüzde upuzun, musmutlu bir yol var ve ben o yolda sadece seninle yürümek istiyorum. Kalbimin tek bir anahtarı var ve o da tamamen sende...
+        </p>
+
+        <div class="climax-box">
+            <div class="drag-zone">
+                <div id="key" class="key-icon" draggable="true">🔑</div>
+                <div id="key-hint" class="key-hint">BENİ KİLİDE GÖTÜR</div>
+            </div>
+            
+            <div id="lock" class="lock-icon">🔒</div>
+            <div id="big-heart" class="final-heart">❤️</div>
+        </div>
+        
+        <h2 class="header-font" style="margin-top: 50px; font-size: 2.5rem;">Seni Çok Seviyorum Sevgilim!</h2>
+    </div>
+
+    <script>
+        // Sayfa ilk yüklendiğinde interaktif sürükle bırakı hazırla
+        window.onload = function() {
+            initDragAndDrop();
+            
+            // BUTONA TIKLAMA OLAYINI BAĞLA
+            const revealBtn = document.getElementById('reveal-btn');
+            revealBtn.addEventListener('click', revealSite);
+        };
+
+        // BUTONA BASILDIĞINDA TETİKLENEN YENİ SİSTEM
+        function revealSite() {
+            // Tarayıcılar müziği otomatik başlatmaya izin vermediği için
+            // bu butona basmak, kullanıcının siteyle etkileşime geçtiğini gösterir.
+            let ask = confirm("Bu siteye girmek istediğinden emin misin? (Son kararın mı?)");
+            if(ask) {
+                const overlay = document.getElementById('entry-overlay');
+                // Perdeyi pürüzsüzce yok et
+                overlay.style.opacity = '0';
+                overlay.style.visibility = 'hidden';
+                
+                // Belki Damla onaylarken müziği de başlatmayı deneyebiliriz:
+                // document.getElementById('audio').play(); // Tarayıcı izin verirse...
+
+                // 0.8 saniye sonra (transition bittiğinde) DOM'dan kaldır
+                setTimeout(() => { overlay.remove(); }, 800);
+            } else {
+                alert("Yaa, ama bu site senin için yapılmıştı... 🥺");
+            }
+        }
+
+        window.onscroll = function() {
+            let pos = window.scrollY;
+            if(pos > 600 && pos < 1600) {
+                createHearts();
+            }
+        };
+
+        function initDragAndDrop() {
+            const key = document.getElementById('key');
+            const lock = document.getElementById('lock');
+            const hint = document.getElementById('key-hint');
+            const bigHeart = document.getElementById('big-heart');
+
+            let isDragging = false;
+            let startX, startY, initialX = 0, initialY = 0;
+
+            key.addEventListener('mousedown', startDrag);
+            key.addEventListener('touchstart', startDrag, { passive: false });
+
+            function startDrag(e) {
+                isDragging = true;
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                
+                startX = clientX - initialX;
+                startY = clientY - initialY;
+
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('touchmove', drag, { passive: false });
+                document.addEventListener('mouseup', stopDrag);
+                document.addEventListener('touchend', stopDrag);
+            }
+
+            function drag(e) {
+                if (!isDragging) return;
+                if(e.cancelable) e.preventDefault(); // Sayfa kaymasını engelle
+
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+                initialX = clientX - startX;
+                initialY = clientY - startY;
+
+                key.style.transform = `translate(${initialX}px, ${initialY}px)`;
+
+                const keyRect = key.getBoundingClientRect();
+                const lockRect = lock.getBoundingClientRect();
+
+                if (
+                    keyRect.right > lockRect.left &&
+                    keyRect.left < lockRect.right &&
+                    keyRect.bottom > lockRect.top &&
+                    keyRect.top < lockRect.bottom
+                ) {
+                    isDragging = false;
+                    document.removeEventListener('mousemove', drag);
+                    document.removeEventListener('touchmove', drag);
+                    
+                    lock.innerHTML = "🔓";
+                    key.style.display = "none";
+                    hint.style.display = "none";
+                    bigHeart.style.transform = "translate(-50%, -50%) scale(1.3)";
+                }
+            }
+
+            function stopDrag() {
+                isDragging = false;
+                document.removeEventListener('mousemove', drag);
+                document.removeEventListener('touchmove', drag);
+            }
+        }
+
+        function controlMusic() {
+            let a = document.getElementById('audio');
+            let b = document.getElementById('music-btn');
+            if(a.paused) {
+                a.play();
+                b.innerHTML = "⏸️ MÜZİĞİ DURDUR";
+            } else {
+                a.pause();
+                b.innerHTML = "🎵 MÜZİĞİMİZİ AÇ";
+            }
+        }
+
+        function createHearts() {
+            if(document.querySelectorAll('.floating-heart').length > 15) return;
+            let heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            document.body.appendChild(heart);
+            heart.style.display = "block";
+            setTimeout(() => { heart.remove(); }, 4000);
+        }
+    </script>
+</body>
+</html>
